@@ -75,8 +75,9 @@ function App() {
           onChange={handleSliderChange}
         />
       </div>
-      <SoundBar name={"natural"} soundSrc={'waiting.mp3'} loop={true} volume={naturalVolume}/>
-      <SoundBar/>
+      <SoundBar name={"Natural"} soundSrc={'waiting.mp3'} loop={true} volume={naturalVolume}/>
+      <SoundBar name={"Airport"} loop={true} volume={naturalVolume}/>
+      <SoundBar name={"Railroad"} loop={true} volume={naturalVolume}/>
       </section>
       <div>
         <a>Favicon image from pngtree.com/</a>
