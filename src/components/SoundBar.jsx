@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './SoundBar.css'
-import Slider from '@mui/material/Slider';
+import Slider from '../../node_modules/@mui/material/Slider';
 import {Howl, Howler} from 'howler';
 
 export default function SoundBar(props) {

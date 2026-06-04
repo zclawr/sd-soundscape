@@ -4,14 +4,14 @@ import './index.css'
 import App from './pages/Home.jsx'
 
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Home from "./pages/Home";
-import History from "./pages/History";
-import Ecology from "./pages/Ecology";
+import Home from "./pages/Home.jsx";
+import History from "./pages/History.jsx";
+import Ecology from "./pages/Ecology.jsx";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "/history", element: <History /> },
-  { path: "/ecology", element: <Ecology /> },
+  { path: "/sd-soundscape/", element: <Home /> },
+  { path: "/sd-soundscape/history", element: <History /> },
+  { path: "/sd-soundscape/ecology", element: <Ecology /> },
 ]);
 
 // export default function App() {

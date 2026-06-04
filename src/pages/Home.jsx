@@ -2,8 +2,8 @@ import { useState } from 'react'
 import './Home.css'
 import Navbar from '../components/AppBar'
 
-import Slider from '@mui/material/Slider';
-import Box from '@mui/material/Box';
+import Slider from '../../node_modules/@mui/material/Slider';
+import Box from '../../node_modules/@mui/material/Box';
 import {Howl, Howler} from 'howler';
 import {useEffect, useRef} from 'react';
 import SoundBar from '../components/SoundBar'
