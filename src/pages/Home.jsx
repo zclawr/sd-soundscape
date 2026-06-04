@@ -13,39 +13,77 @@ import BirdCard from '../components/BirdCard';
 function Home() {
   const customMarks = [
     { value: 1650, label: '1650'},
-    { value: 1925, label: '1925'},
     { value: 1895, label: '1895'},
+    { value: 1925, label: '1925'},
     { value: 1965, label: '1965'},
     { value: 2026, label: 'Present'},
   ];
 
+  const [sliderVal, setSliderVal] = useState(1650);
+  const [naturalVolume, setNaturalVolume] = useState(0.5)
+  const [cartVolume, setCartVolume] = useState(0)
+  const [woodVolume, setWoodVolume] = useState(0)
+  const [carVolume, setCarVolume] = useState(0)
+  const [constructionVolume, setConstructionVolume] = useState(0)
+  const [highwayVolume, setHighwayVolume] = useState(0)
+  const [airplaneVolume, setAirplaneVolume] = useState(0)
+
   const distanceDict = { 
     1650: {
-      "natural": 0.5,
-      "airport": 0.0,
-      "train": 0.0,
+      "Nature": 0.5,
     },
     1895: {
-      "natural": 0.5,
-      "airport": 0.0,
-      "train": 0.5,
+      "Nature": 0.5,
+      "Horse-drawn Cart": 0.2,
+      "Chopping Wood": 0.05,
     },
     1925: {
-      "natural": 0.5,
-      "airport": 0.0,
-      "train": 0.8,
+      "Nature": 0.5,
+      "Horse-drawn Cart": 0.1,
+      "Streetcars": 0.05,
     },
     1965: {
-      "natural": 0.5,
-      "airport": 0.4,
-      "train": 0.8,
+      "Nature": 0.5,
+      "Construction": 0.1,
+      "Highway": 0.2,
     },
     2026: {
-      "natural": 0.5,
-      "airport": 1.0,
-      "train": 0.8,
+      "Nature": 0.5,
+      "Construction": 0.2,
+      "Highway": 0.4,
+      "Airplanes": 0.1,
     },
   };
+
+  const soundDbRefs = {
+    "Nature": 40,
+    "Horse-drawn Cart": 40, 
+    "Chopping Wood": 40,
+    "Streetcars": 40,
+    "Construction": 80,
+    "Highway": 50,
+    "Airplanes": 60
+  }
+
+  const soundSrcDict = {
+    "Nature": 'sounds/nature.wav',
+    "Horse-drawn Cart": 'sounds/cart.wav',
+    "Chopping Wood": 'sounds/wood.wav',
+    "Streetcars": 'sounds/cars.wav',
+    "Construction": 'sounds/construction.wav',
+    "Highway": 'sounds/highway.wav',
+    "Airplanes": 'sounds/plane.wav'
+  }
+
+  const soundStateDict = {
+    "Nature": naturalVolume,
+    "Horse-drawn Cart": cartVolume,
+    "Chopping Wood": woodVolume,
+    "Streetcars": carVolume,
+    "Construction": constructionVolume,
+    "Highway": highwayVolume,
+    "Airplanes": airplaneVolume
+  }
 
   const birdNames = [
     "Western Screech Owl (Megascops Kennicottii) ",
@@ -83,6 +121,22 @@ function Home() {
     60
   ]
 
+  const typicalVolume = {
+    1650: 0,
+    1895: 30,
+    1925: 60,
+    1965: 85,
+    2026: 110
+  }
+
+  const speciesImpacted = {
+    1650: 0,
+    1895: 0,
+    1925: 2,
+    1965: 5,
+    2026: 6
+  }
+
   const birdImgSrcs = [
     "western_screech_owl.jpg",
     "red_tailed_hawk.jpg",
@@ -91,9 +145,6 @@ function Home() {
     "surfbird.png",
     "song_sparrow.png"
   ]
-
-  const [sliderVal, setSliderVal] = useState(1650);
-  const [naturalVolume, setNaturalVolume] = useState(distanceDict[1650]['natural'])
 
   function valuetext(val) {
       return `${val}`;
@@ -105,15 +156,59 @@ function Home() {
 
   useEffect(() => {
     let dists = distanceDict[sliderVal]
-    setNaturalVolume(dists['natural'])
+
+    setNaturalVolume(dists['Nature'])
+
+    if('Horse-drawn Cart' in dists){
+      setCartVolume(dists['Horse-drawn Cart'])
+    }
+    else{
+      setCartVolume(0)
+    }
+    if('Chopping Wood' in dists){
+      setWoodVolume(dists['Chopping Wood'])
+    }
+    else{
+      setWoodVolume(0)
+    }
+    if('Streetcars' in dists){
+      setCarVolume(dists['Streetcars'])
+    }
+    else{
+      setCarVolume(0)
+    }
+    if('Construction' in dists){
+      setConstructionVolume(dists['Construction'])
+    }
+    else{
+      setConstructionVolume(0)
+    }
+    if('Highway' in dists){
+      setHighwayVolume(dists['Highway'])
+    }
+    else{
+      setHighwayVolume(0)
+    }
+    if('Airplanes' in dists){
+      setAirplaneVolume(dists['Airplanes'])
+    }
+    else{
+      setAirplaneVolume(0)
+    }
   }, [sliderVal]);
+
+  useEffect(() => {
+    return () => {
+      Howler.stop(); 
+    }
+  }, [])
 
   return (
     <>
     <Navbar/>
       <section id="center">
       <div style={{ marginTop: '-30px'}}>
-        <h2>Destructive Interference</h2>
+        <h2 style={{ color:"rgb(246, 246, 238)", textShadow:"0px 120px 4px rgba(0, 0, 0, 0.6)"}}>Destructive Interference</h2>
         <h1>Birdsong and Human Noise</h1>
       </div>
       <div style={{ marginTop: '2%'}}>
@@ -138,12 +233,16 @@ function Home() {
       <div className="outerContainer">
         <div className="innerContainer">
           <div>
-            <SoundBar name={"Natural"} loop={true} volume={naturalVolume}/>
-            <SoundBar name={"Airport"} loop={true} volume={naturalVolume}/>
-            <SoundBar name={"Railroad"} loop={true} volume={naturalVolume}/>
+            <SoundBar name={"La Jolla Nature"} soundSrc={soundSrcDict["Nature"]} loop={true} volume={soundStateDict["Nature"]} dbRef={soundDbRefs["Nature"]}/>  
+            <SoundBar name={"Horse-drawn Cart"} soundSrc={soundSrcDict["Horse-drawn Cart"]} loop={true} volume={soundStateDict["Horse-drawn Cart"]} dbRef={soundDbRefs["Horse-drawn Cart"]}/>  
+            <SoundBar name={"Chopping Wood"} soundSrc={soundSrcDict["Chopping Wood"]} loop={true} volume={soundStateDict["Chopping Wood"]} dbRef={soundDbRefs["Chopping Wood"]}/>  
+            <SoundBar name={"Streetcars"} soundSrc={soundSrcDict["Streetcars"]} loop={true} volume={soundStateDict["Streetcars"]} dbRef={soundDbRefs["Streetcars"]}/>  
+            <SoundBar name={"Construction"} soundSrc={soundSrcDict["Construction"]} loop={true} volume={soundStateDict["Construction"]} dbRef={soundDbRefs["Construction"]}/>  
+            <SoundBar name={"Highway"} soundSrc={soundSrcDict["Highway"]} loop={true} volume={soundStateDict["Highway"]} dbRef={soundDbRefs["Highway"]}/>  
+            <SoundBar name={"Airplanes"} soundSrc={soundSrcDict["Airplanes"]} loop={true} volume={soundStateDict["Airplanes"]} dbRef={soundDbRefs["Airplanes"]}/>  
           </div>
           <div style={{paddingTop: '-10px'}}>
-            <h3>Species Impacted: {0}/6</h3>
+            <h3>Species Impacted: {speciesImpacted[sliderVal]}/6</h3>
           </div>
           <div className="cardContainer">
             {birdNames.map((name, index) => (
@@ -153,6 +252,7 @@ function Home() {
                   imgSrc={birdImgSrcs[index]}
                   impacts={birdImpacts[index]}
                   threshold={birdThresholds[index]}
+                  currVol={typicalVolume[sliderVal]}
                 />
               ))}
           </div>

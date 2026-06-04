@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import './AppBar.css'
 
 const pages = ['Home', 'History', 'Ecology'];
-const links = ['/sd-soundscape/', 'sd-soundscape/history', 'sd-soundscape/ecology']
+const links = ['/sd-soundscape/', '/sd-soundscape/history', '/sd-soundscape/ecology']
 
 function ResponsiveAppBar() {
   return (

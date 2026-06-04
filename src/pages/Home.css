@@ -8,6 +8,7 @@
 body {
   background-color: rgb(246, 246, 238);
 }
+
 h1 {
   font-size: 48px;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -23,7 +24,7 @@ h2 {
 }
 
 p {
-  font-size: 160px;
+  font-size: 16px;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
