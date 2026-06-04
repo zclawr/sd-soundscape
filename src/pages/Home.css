@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'MedievalGothic';
-  src: url('https://zclawr.github.io/sd-soundscape/fonts/mevno1.ttf') format('truetype');
+  src: url('/fonts/mevno1.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
