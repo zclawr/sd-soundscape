@@ -48,7 +48,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-top: 40px;
+  padding-top: 10px;
   justify-content: center;
 
 }

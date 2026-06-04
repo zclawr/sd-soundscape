@@ -142,6 +142,9 @@ function Home() {
             <SoundBar name={"Airport"} loop={true} volume={naturalVolume}/>
             <SoundBar name={"Railroad"} loop={true} volume={naturalVolume}/>
           </div>
+          <div style={{paddingTop: '-10px'}}>
+            <h3>Species Impacted: {0}/6</h3>
+          </div>
           <div className="cardContainer">
             {birdNames.map((name, index) => (
                 <BirdCard
