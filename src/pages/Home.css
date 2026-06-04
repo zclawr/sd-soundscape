@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'MedievalGothic';
+  src: url('fonts/mevno1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: rgb(246, 246, 238);
+}
+h1 {
+  font-size: 48px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color:rgb(10, 37, 10);
+  text-shadow:2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 32px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color:rgb(246, 246, 238);;
+  text-shadow:0px 120px 4px rgba(0, 0, 0, 0.6);
+}
+
+p {
+  font-size: 160px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 40px;
+  justify-content: center;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  /* flex-grow: 1; */
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+.cardContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 40px;
+  justify-content: center;
+
+}
+
+.outerContainer {
+  display: grid;
+  grid-template-columns: 55% auto;
+  gap: 30px;
+}

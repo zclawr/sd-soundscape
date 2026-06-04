@@ -56,7 +56,7 @@ export default function SoundBar(props) {
   return (
     <div key={decibel} className="container">
       <p>{props.name}</p>
-      <Slider sx={{ width: 700 }} value={decibel} min={-70} max={0} size='medium' disabled/>
+      <Slider sx={{ width: 400 }} value={decibel} min={-70} max={0} size='medium' disabled/>
       <p>{decibel.toFixed(2)} db</p>
     </div>
   )

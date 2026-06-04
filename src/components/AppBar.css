@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'MedievalGothic';
+  src: url('fonts/mevno1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.linkContainer {
+  padding-top: 1%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 16px;
+}
+
+.customLink {
+  font-family: MedievalGothic;
+  font-size: xx-large;
+  text-decoration: none;
+  color:forestgreen;
+  text-shadow:2px 2px 4px rgba(0, 0, 0, 0.5);
+}

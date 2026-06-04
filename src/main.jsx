@@ -1,10 +1,25 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import App from './pages/Home.jsx'
+
+import { createBrowserRouter, RouterProvider } from "react-router";
+import Home from "./pages/Home";
+import History from "./pages/History";
+import Ecology from "./pages/Ecology";
+
+const router = createBrowserRouter([
+  { path: "/", element: <Home /> },
+  { path: "/history", element: <History /> },
+  { path: "/ecology", element: <Ecology /> },
+]);
+
+// export default function App() {
+//   return <RouterProvider router={router} />;
+// }
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+   <RouterProvider router={router} />
   </StrictMode>,
 )
